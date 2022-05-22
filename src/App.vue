@@ -2,19 +2,19 @@
     <NavigationBar />
 
     <div>
-        <HomeView />
+        <GameView />
     </div>
 </template>
 
 <script>
 import NavigationBar from "@/components/NavigationBar.vue";
-import HomeView from "@/views/HomeView.vue";
+import GameView from "@/views/GameView.vue";
 
 export default {
     name: "App",
     components: {
         NavigationBar,
-        HomeView
+        GameView
     }
 }
 </script>
