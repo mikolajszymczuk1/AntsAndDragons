@@ -1,9 +1,9 @@
 <template>
     <NavigationBar />
 
-    <div>
+    <main>
         <GameView />
-    </div>
+    </main>
 </template>
 
 <script>

@@ -1,13 +1,16 @@
 <template>
     <div>
-        <h1 class="text-[2em] text-center p-5 text-candy-pink font-bold">
-            Game Page
-        </h1>
+        <GameMain />
     </div>
 </template>
 
 <script>
+    import GameMain from "@/components/game/GameMain.vue";
+
     export default {
-        name: "GameView"
+        name: "GameView",
+        components: {
+            GameMain
+        }
     }
 </script>
