@@ -26,10 +26,11 @@
                 v-for="col, colIndex in row"
                 :key="colIndex"
                 :class="col !== ' ' ? 'bg-chinese-violet' : ''"
+                @click="emitCords(colIndex, rowIndex)"
             >
-                <AntIcon v-if="col === '1'" />
-                <DragonIcon v-else-if="col === '2'" />
-                <FoodIcon v-else-if="col === '0'" />
+                <AntIcon v-if="col !== ' ' && col.getClassName() === 'Ant'" />
+                <DragonIcon v-else-if="col !== ' ' && col.getClassName() === 'Dragon'" />
+                <FoodIcon v-else-if="col !== ' ' && col.getClassName() === 'Food'" />
             </div>
         </div>
     </div>
@@ -63,6 +64,12 @@
             getNumberOfColumns() {
                 if (!this.boardData[0]) return 0;
                 return this.boardData[0].length;
+            }
+        },
+        methods: {
+            // Emit clicked cell cords to parent component
+            emitCords(posX, posY) {
+                this.$emit("clicked-cell", { x: posX, y: posY });
             }
         }
     }

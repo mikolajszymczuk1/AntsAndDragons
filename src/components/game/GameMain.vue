@@ -1,7 +1,10 @@
 <template>
     <!-- Main game component -->
     <div>
-        <GameBoard :board-data="board.getBoard()" />
+        <GameBoard
+            :board-data="board.getBoard()"
+            @clicked-cell="placeGameElementOnBoard"
+        />
     </div>
 </template>
 
@@ -22,7 +25,12 @@
         created() {
             this.board = new Board(8);
             this.board.createBoard();
-            console.log(this.board.getBoard());
+        },
+        methods: {
+            // Place game element (Ant, Dragon, Food) on board
+            placeGameElementOnBoard(boardPosition) {
+                this.board.placeGameElement(boardPosition.x, boardPosition.y);
+            }
         }
     }
 </script>
