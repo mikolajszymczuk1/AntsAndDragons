@@ -1,11 +1,69 @@
 <template>
+    <!-- Game board component -->
     <div>
-        <h2>Game Board</h2>
+        <!-- Generate column numbers -->
+        <div class="flex justify-center mb-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em]">
+            <div class="flex justify-center w-[34px] mr-[5px] last:mr-0 first:opacity-0 first:w-auto"
+                v-for="num in (getNumberOfColumns + 1)"
+                :key="num"
+            >
+                {{ num - 1 }}
+            </div>
+        </div>
+
+        <!-- Generate rows -->
+        <div class="flex justify-center items-center mb-[5px] last:mb-0"
+            v-for="row, rowIndex in boardData"
+            :key="rowIndex"
+        >
+            <!-- Row number -->
+            <div class="flex items-center h-[34px] mr-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em]">
+                {{ rowIndex + 1 }}
+            </div>
+
+            <!-- Generate columns -->
+            <div class="flex justify-center items-center bg-tumbleweed rounded-[5px] mr-[5px] w-[34px] h-[34px] last:mr-0"
+                v-for="col, colIndex in row"
+                :key="colIndex"
+                :class="col !== ' ' ? 'bg-chinese-violet' : ''"
+            >
+                <AntIcon v-if="col === '1'" />
+                <DragonIcon v-else-if="col === '2'" />
+                <FoodIcon v-else-if="col === '0'" />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+    import AntIcon from "@/components/icons/AntIcon.vue";
+    import DragonIcon from "@/components/icons/DragonIcon.vue";
+    import FoodIcon from "@/components/icons/FoodIcon.vue";
+
     export default {
-        name: "GameBoard"
+        name: "GameBoard",
+        components: {
+            AntIcon,
+            DragonIcon,
+            FoodIcon
+        },
+        props: {
+            boardData: {  // 2D Array
+                type: Array,
+                required: true,
+                validator(value) {  // Must be 2D array
+                    if (value.length === 0) { return false; }
+                    if (value[0].constructor !== Array) { return false; }
+                    return true;
+                }
+            }
+        },
+        computed: {
+            // Return number of columns in board array
+            getNumberOfColumns() {
+                if (!this.boardData[0]) return 0;
+                return this.boardData[0].length;
+            }
+        }
     }
 </script>

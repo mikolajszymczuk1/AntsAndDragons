@@ -1,11 +1,28 @@
 <template>
+    <!-- Main game component -->
     <div>
-        <h2>Game Main</h2>
+        <GameBoard :board-data="board.getBoard()" />
     </div>
 </template>
 
 <script>
+    import GameBoard from "@/components/game/GameBoard.vue";
+    import Board from "@/gameElements/Board.js";
+
     export default {
-        name: "GameMain"
+        name: "GameMain",
+        components: {
+            GameBoard
+        },
+        data() {
+            return {
+                board: null
+            }
+        },
+        created() {
+            this.board = new Board(8);
+            this.board.createBoard();
+            console.log(this.board.getBoard());
+        }
     }
 </script>
