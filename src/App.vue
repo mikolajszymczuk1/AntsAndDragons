@@ -11,17 +11,21 @@
     <main>
         <GameView />
     </main>
+
+    <TheFooter />
 </template>
 
 <script>
 import NavigationBar from "@/components/NavigationBar.vue";
 import GameView from "@/views/GameView.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
     name: "App",
     components: {
         NavigationBar,
-        GameView
+        GameView,
+        TheFooter
     }
 }
 </script>
