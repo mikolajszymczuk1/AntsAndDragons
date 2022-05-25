@@ -1,9 +1,9 @@
 <template>
     <!-- Game board component -->
-    <div>
+    <div class="mt-[31px] sm:mt-[50px]">
         <!-- Generate column numbers -->
-        <div class="flex justify-center mb-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em]">
-            <div class="flex justify-center w-[34px] mr-[5px] last:mr-0 first:opacity-0 first:w-auto"
+        <div class="flex justify-center mb-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em] sm:text-[0.9em] md:text-[1.2em]">
+            <div class="flex justify-center w-[34px] mr-[5px] last:mr-0 first:opacity-0 first:w-auto sm:w-[44px] sm:mr-[8px] md:w-[54px]"
                 v-for="num in (getNumberOfColumns + 1)"
                 :key="num"
             >
@@ -12,20 +12,20 @@
         </div>
 
         <!-- Generate rows -->
-        <div class="flex justify-center items-center mb-[5px] last:mb-0"
+        <div class="flex justify-center items-center mb-[5px] last:mb-0 sm:mb-[8px]"
             v-for="row, rowIndex in boardData"
             :key="rowIndex"
         >
             <!-- Row number -->
-            <div class="flex items-center h-[34px] mr-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em]">
+            <div class="flex items-center mr-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em] sm:text-[0.9em] md:text-[1.2em]">
                 {{ rowIndex + 1 }}
             </div>
 
             <!-- Generate columns -->
-            <div class="flex justify-center items-center bg-tumbleweed rounded-[5px] mr-[5px] w-[34px] h-[34px] last:mr-0"
+            <div class="flex justify-center items-center rounded-[5px] mr-[5px] w-[34px] h-[34px] last:mr-0 sm:w-[44px] sm:h-[44px] sm:mr-[8px] md:w-[54px] md:h-[54px] cursor-pointer"
                 v-for="col, colIndex in row"
                 :key="colIndex"
-                :class="col !== ' ' ? 'bg-chinese-violet' : ''"
+                :class="col !== ' ' ? 'bg-chinese-violet' : 'bg-tumbleweed/80'"
                 @click="emitCords(colIndex, rowIndex)"
             >
                 <AntIcon v-if="col !== ' ' && col.getClassName() === 'Ant'" />
