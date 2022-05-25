@@ -1,6 +1,6 @@
 <template>
     <!-- Game board component -->
-    <div class="mt-[31px] sm:mt-[50px]">
+    <div>
         <!-- Generate column numbers -->
         <div class="flex justify-center mb-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em] sm:text-[0.9em] md:text-[1.2em]">
             <div class="flex justify-center w-[34px] mr-[5px] last:mr-0 first:opacity-0 first:w-auto sm:w-[44px] sm:mr-[8px] md:w-[54px]"
