@@ -38,6 +38,15 @@ class Board {
             this.board[y][x] = " ";
         }
     }
+
+    // Clear board (make all cells empty)
+    clearBoard() {
+        for (let i = 0; i < this.size; i++) {
+            for(let j = 0; j < this.size; j++) {
+                this.board[i][j] = " ";
+            }
+        }
+    }
 }
 
 export default Board;

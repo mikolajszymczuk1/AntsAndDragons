@@ -2,6 +2,7 @@
     <!-- Game control button component -->
     <button class="rounded-[10px] font-open font-semibold flex justify-center items-center"
         :style="`background-color: ${ bgColor }; color: ${ textColor };`"
+        @click="handleClick()"
     >
         <slot></slot>
     </button>
@@ -18,6 +19,11 @@
             textColor: {
                 type: String,
                 default: "white"
+            }
+        },
+        methods: {
+            handleClick() {
+                this.$emit("clicked");
             }
         }
     }

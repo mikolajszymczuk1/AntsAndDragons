@@ -24,6 +24,7 @@
             <!-- Clear board button -->
             <GameControlButton class="w-[50px] h-[50px] sm:w-auto sm:h-auto sm:py-[14px] sm:px-[26px]"
                 bg-color="#6d597a"
+                @clicked="clearGameBoard()"
             >
                 <ReplayIcon class="fill-[white] w-[19px] h-[19px] sm:mr-[10px]" />
                 <span class="hidden sm:block">Restart</span>
@@ -40,6 +41,7 @@
             <!-- Edit mode button -->
             <GameControlButton class="w-[50px] h-[50px] sm:w-auto sm:h-auto sm:py-[14px] sm:px-[26px]"
                 bg-color="#355070"
+                @clicked="toggleEditMode()"
             >
                 <ToolsIcon class="fill-[white] w-[19px] h-[19px] sm:mr-[10px]" />
                 <span class="hidden sm:block">Edit Mode</span>
@@ -70,7 +72,8 @@
         data() {
             return {
                 board: null,
-                round: 10
+                round: 10,
+                isEditMode: false
             }
         },
         created() {
@@ -79,8 +82,20 @@
         },
         methods: {
             // Place game element (Ant, Dragon, Food) on board
+            // User can place game elements only when edit mode is active
             placeGameElementOnBoard(boardPosition) {
+                if (!this.isEditMode) return;
                 this.board.placeGameElement(boardPosition.x, boardPosition.y);
+            },
+            
+            // Clear game board
+            clearGameBoard() {
+                this.board.clearBoard();
+            },
+
+            // Turn on or turn off edit mode (When edit mode is true, user can place elements on board)
+            toggleEditMode() {
+                this.isEditMode = !this.isEditMode;
             }
         }
     }
