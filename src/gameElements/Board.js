@@ -29,11 +29,11 @@ class Board {
     // Place on board Ant or Dragon or Food
     placeGameElement(x, y) {
         if (this.board[y][x] === " ") {
-            this.board[y][x] = new Ant(100);
-        } else if (this.board[y][x].getClassName() === "Ant") {
-            this.board[y][x] = new Dragon(200);
-        } else if (this.board[y][x].getClassName() === "Dragon") {
-            this.board[y][x] = new Food();
+            this.board[y][x] = new Ant(100, "Ant");
+        } else if (this.board[y][x].getName() === "Ant") {
+            this.board[y][x] = new Dragon(200, "Dragon");
+        } else if (this.board[y][x].getName() === "Dragon") {
+            this.board[y][x] = new Food("Food");
         } else {
             this.board[y][x] = " ";
         }

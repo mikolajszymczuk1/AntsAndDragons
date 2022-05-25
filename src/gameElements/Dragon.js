@@ -1,6 +1,11 @@
-import Creature from "./Creature";
+import Base from "./Base";
 
 // Dragon character class
-class Dragon extends Creature { }
+class Dragon extends Base {
+    constructor(health, name) {
+        super(name);
+        this.health = health;
+    }
+}
 
 export default Dragon;

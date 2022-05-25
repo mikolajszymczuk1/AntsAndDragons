@@ -1,9 +1,6 @@
+import Base from "./Base";
+
 // Food element class
-class Food {
-    // Return class name
-    getClassName() {
-        return this.constructor.name;
-    }
-}
+class Food extends Base { }
 
 export default Food;

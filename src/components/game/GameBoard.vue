@@ -28,9 +28,9 @@
                 :class="col !== ' ' ? 'bg-chinese-violet' : 'bg-tumbleweed/80'"
                 @click="emitCords(colIndex, rowIndex)"
             >
-                <AntIcon v-if="col !== ' ' && col.getClassName() === 'Ant'" />
-                <DragonIcon v-else-if="col !== ' ' && col.getClassName() === 'Dragon'" />
-                <FoodIcon v-else-if="col !== ' ' && col.getClassName() === 'Food'" />
+                <AntIcon v-if="col !== ' ' && col.getName() === 'Ant'" />
+                <DragonIcon v-else-if="col !== ' ' && col.getName() === 'Dragon'" />
+                <FoodIcon v-else-if="col !== ' ' && col.getName() === 'Food'" />
             </div>
         </div>
     </div>
