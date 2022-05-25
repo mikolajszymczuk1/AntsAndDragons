@@ -5,11 +5,11 @@ module.exports = {
     ],
     theme: {
         colors: {
-            "y-in-mn-blue": "#355070ff",
-            "chinese-violet": "#6d597aff",
-            "cinnamon-satin": "#b56576ff",
-            "candy-pink": "#e56b6fff",
-            "tumbleweed": "#eaac8bff"
+            "y-in-mn-blue": "#355070",
+            "chinese-violet": "#6d597a",
+            "cinnamon-satin": "#b56576",
+            "candy-pink": "#e56b6f",
+            "tumbleweed": "#eaac8b"
         },
         fontFamily: {
             "noto": ['Noto Sans', 'sans-serif'],
@@ -17,7 +17,8 @@ module.exports = {
         },
         screens: {
             "sm": "800px",
-            "md": "1200px"
+            "md": "1200px",
+            "lg": "1440px"
         }
     },
     plugins: [],
