@@ -1,4 +1,5 @@
 <template>
+    <!-- Footer component -->
     <footer class="mt-[38px] md:mt-[39px]">
         <!-- Footer wave decoration -->
         <img class="w-[100%] h-auto md:hidden"
