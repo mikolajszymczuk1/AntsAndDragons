@@ -33,6 +33,7 @@
             <!-- Next move button -->
             <GameControlButton class="w-[63px] h-[63px] sm:w-auto sm:h-auto mx-[20px] sm:py-[14px] sm:px-[26px]"
                 bg-color="#e56b6f"
+                @clicked="doNextMoveOnBoard()"
             >
                 <PlayIcon class="fill-[white] w-[28px] h-[28px] sm:w-[19px] sm:h-[19px] sm:mr-[10px]" />
                 <span class="hidden sm:block">Next Move</span>
@@ -84,8 +85,11 @@
             // Place game element (Ant, Dragon, Food) on board
             // User can place game elements only when edit mode is active
             placeGameElementOnBoard(boardPosition) {
-                if (!this.isEditMode) return;
-                this.board.placeGameElement(boardPosition.x, boardPosition.y);
+                if (!this.isEditMode) {
+                    this.board.showElementStats(boardPosition);
+                } else {
+                    this.board.placeGameElement(boardPosition.x, boardPosition.y);
+                }
             },
             
             // Clear game board
@@ -96,6 +100,11 @@
             // Turn on or turn off edit mode (When edit mode is true, user can place elements on board)
             toggleEditMode() {
                 this.isEditMode = !this.isEditMode;
+            },
+
+            // Do next move on game board
+            doNextMoveOnBoard() {
+                this.board.nextMove();
             }
         }
     }

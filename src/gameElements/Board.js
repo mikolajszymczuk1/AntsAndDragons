@@ -26,16 +26,26 @@ class Board {
         return this.board;
     }
 
+    // Return size of board
+    getSize() {
+        return this.size;
+    }
+
     // Place on board Ant or Dragon or Food
     placeGameElement(x, y) {
-        if (this.board[y][x] === " ") {
-            this.board[y][x] = new Ant(100, "Ant");
-        } else if (this.board[y][x].getName() === "Ant") {
-            this.board[y][x] = new Dragon(200, "Dragon");
-        } else if (this.board[y][x].getName() === "Dragon") {
-            this.board[y][x] = new Food("Food");
-        } else {
-            this.board[y][x] = " ";
+        switch(this.checkCell({ x: x, y: y })) {
+            case "empty":
+                this.board[y][x] = new Ant(100, "Ant", x, y);
+                break;
+            case "ant":
+                this.board[y][x] = new Dragon(200, "Dragon", x, y);
+                break;
+            case "dragon":
+                this.board[y][x] = new Food("Food", x, y);
+                break;
+            case "food":
+                this.board[y][x] = " ";
+                break;
         }
     }
 
@@ -46,6 +56,51 @@ class Board {
                 this.board[i][j] = " ";
             }
         }
+    }
+
+    // Do next move on board
+    nextMove() {
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                if (!this.isItAntOrDragon({ x: j, y: i })) continue;
+                if (this.board[i][j].isMoved) continue;
+                this.board[i][j].isMoved = true;
+                this.board[i][j].move(this);
+            }
+        }
+
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                if (!this.isItAntOrDragon({ x: j, y: i })) continue;
+                this.board[i][j].isMoved = false;
+            }
+        }
+    }
+
+    // Show element stats (Ant or Dragon)
+    showElementStats(position) {
+        if (!this.isItAntOrDragon(position)) return;
+        this.board[position.y][position.x].showStats();
+    }
+
+    // Move element to another place
+    moveToAnotherPlace(posA, posB) {
+        this.board[posB.y][posB.x] = this.board[posA.y][posA.x];
+        this.board[posA.y][posA.x] = " ";
+    }
+
+    // Return true if cell is Ant or Dragon
+    isItAntOrDragon(position) {
+        if (this.checkCell(position) === "empty" || this.checkCell(position) === "food") return false;
+        return true;
+    }
+
+    // Simple method return 'empty' if cell is empty or one of 3 game characters: 'food', 'ant', 'dragon'
+    checkCell(position) {
+        if (this.board[position.y][position.x] === " ") return "empty";
+        else if (this.board[position.y][position.x].getName() === "Food") return "food";
+        else if (this.board[position.y][position.x].getName() === "Ant") return "ant";
+        else return "dragon";
     }
 }
 
