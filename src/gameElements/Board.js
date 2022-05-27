@@ -102,6 +102,11 @@ class Board {
         else if (this.board[position.y][position.x].getName() === "Ant") return "ant";
         else return "dragon";
     }
+
+    // Delete element from game board
+    deleteElement(position) {
+        this.board[position.y][position.x] = " ";
+    }
 }
 
 export default Board;
