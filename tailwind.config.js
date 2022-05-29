@@ -16,9 +16,11 @@ module.exports = {
             "open": ['Open Sans', 'sans-serif']
         },
         screens: {
+            "xsm": "500px",
             "sm": "800px",
             "md": "1200px",
-            "lg": "1440px"
+            "lg": "1440px",
+            "xlg": "1600px"
         }
     },
     plugins: [],
