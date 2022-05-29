@@ -22,15 +22,17 @@
             </div>
 
             <!-- Generate columns -->
-            <div class="flex justify-center items-center rounded-[5px] mr-[5px] w-[34px] h-[34px] last:mr-0 sm:w-[44px] sm:h-[44px] sm:mr-[8px] md:w-[54px] md:h-[54px] cursor-pointer"
+            <div class="animate__animated animate__bounceIn transition-colors duration-[200ms] flex justify-center items-center rounded-[5px] mr-[5px] w-[34px] h-[34px] last:mr-0 sm:w-[44px] sm:h-[44px] sm:mr-[8px] md:w-[54px] md:h-[54px] cursor-pointer"
                 v-for="col, colIndex in row"
                 :key="colIndex"
                 :class="col !== ' ' ? 'bg-chinese-violet' : 'bg-tumbleweed/80'"
                 @click="emitCords(colIndex, rowIndex)"
             >
-                <AntIcon v-if="col !== ' ' && col.getName() === 'Ant'" />
-                <DragonIcon v-else-if="col !== ' ' && col.getName() === 'Dragon'" />
-                <FoodIcon v-else-if="col !== ' ' && col.getName() === 'Food'" />
+                <Transition enter-active-class="animate__animated animate__bounceIn">
+                    <AntIcon v-if="col !== ' ' && col.getName() === 'Ant'" />
+                    <DragonIcon v-else-if="col !== ' ' && col.getName() === 'Dragon'" />
+                    <FoodIcon v-else-if="col !== ' ' && col.getName() === 'Food'" />
+                </Transition>
             </div>
         </div>
     </div>
