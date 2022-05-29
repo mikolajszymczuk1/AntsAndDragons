@@ -73,7 +73,7 @@
         data() {
             return {
                 board: null,
-                round: 10,
+                round: 0,
                 isEditMode: false
             }
         },
@@ -94,6 +94,7 @@
             
             // Clear game board
             clearGameBoard() {
+                this.round = 0;
                 this.board.clearBoard();
             },
 
@@ -104,6 +105,7 @@
 
             // Do next move on game board
             doNextMoveOnBoard() {
+                this.round++;
                 this.board.nextMove();
             }
         }
