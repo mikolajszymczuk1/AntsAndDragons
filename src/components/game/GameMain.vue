@@ -13,7 +13,9 @@
                     Round: {{ round }}
                 </p>
                 
-                <button class="md:hidden" name="stats menu" aria-label="stats menu button">
+                <button class="lg:hidden" name="stats menu" aria-label="stats menu button"
+                    @click="isStatsEventPanelActive = true"
+                >
                     <DotsMenuIcon class="fill-chinese-violet w-[35px] h-auto sm:w-[45px]" />
                 </button>
             </div>
@@ -48,13 +50,20 @@
                 <span class="hidden sm:block">Edit Mode</span>
             </GameControlButton>
         </div>
+
+        <GameStatsEventsPanel
+            :stats-data="statsData"
+            :is-active="isStatsEventPanelActive"
+            @exit-menu="isStatsEventPanelActive = false"
+        />
     </div>
 </template>
 
 <script>
-    import GameBoard from "@/components/game/GameBoard.vue";
     import Board from "@/gameElements/Board.js";
+    import GameBoard from "@/components/game/GameBoard.vue";
     import GameControlButton from "@/components/game/GameControlButton.vue";
+    import GameStatsEventsPanel from "@/components/game/GameStatsEventsPanel.vue";
     import DotsMenuIcon from "@/components/icons/DotsMenuIcon.vue";
     import ReplayIcon from "@/components/icons/ReplayIcon.vue";
     import PlayIcon from "@/components/icons/PlayIcon.vue";
@@ -65,6 +74,7 @@
         components: {
             GameBoard,
             GameControlButton,
+            GameStatsEventsPanel,
             DotsMenuIcon,
             ReplayIcon,
             PlayIcon,
@@ -74,7 +84,13 @@
             return {
                 board: null,
                 round: 0,
-                isEditMode: false
+                isEditMode: false,
+                isStatsEventPanelActive: false,
+                statsData: {
+                    antsCount: 0,
+                    dragonsCount: 0,
+                    foodCount: 0
+                }
             }
         },
         created() {
