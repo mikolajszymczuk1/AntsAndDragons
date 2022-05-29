@@ -31,6 +31,11 @@ class Board {
         return this.size;
     }
 
+    // Return element with position 'position'
+    getElement(position) {
+        return this.board[position.y][position.x];
+    }
+
     // Place on board Ant or Dragon or Food
     placeGameElement(x, y) {
         switch(this.checkCell({ x: x, y: y })) {
