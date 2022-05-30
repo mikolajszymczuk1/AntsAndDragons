@@ -57,6 +57,7 @@
             :stats-data="statsData"
             :element-stats-data="elementStatsData"
             :is-active="isStatsEventPanelActive"
+            :events-list="board.getEvents()"
             @exit-menu="isStatsEventPanelActive = false"
             @clear-board="clearGameBoard()"
             @change-board-size="changeGameBoardSize()"

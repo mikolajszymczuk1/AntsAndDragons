@@ -39,12 +39,16 @@ class Dragon extends Base {
 
                 if ((this.health + board.getElement(neighbors[i]).health) > 200) this.health = 200;
                 else this.health += board.getElement(neighbors[i]).health;
+                
+                // If ant was been eaten, send message
+                this.sendMsg(board, "Ant was been eaten !", this.x, this.y);
                 break;
 
             } else if (board.checkCell(neighbors[i]) === "food" || board.checkCell(neighbors[i]) === "dragon") {
                 let filteredNeighbors = neighbors.filter((el) =>
                     board.checkCell(el) !== "dragon" && board.checkCell(el) !== "food" && board.checkCell(el) !== "ant");
                 randomWay = filteredNeighbors[Base.randomNumber(0, filteredNeighbors.length - 1)];
+                
                 break;
             }
         }
@@ -55,6 +59,7 @@ class Dragon extends Base {
         if (this.health > 10) {
             this.health -= 10;
         } else {
+            this.sendMsg(board, "Dragon died !");
             board.deleteElement({ x: this.x, y: this.y });
         }
 
@@ -72,6 +77,19 @@ class Dragon extends Base {
             x: this.x,
             y: this.y
         };
+    }
+
+    // Send event message
+    sendMsg(board, msgTitle, posX = this.x, posY = this.y) {
+        let msg = {
+            title: msgTitle,
+            data: {
+                x: posX,
+                y: posY
+            }
+        };
+
+        board.addEventMsg(msg);
     }
 }
 

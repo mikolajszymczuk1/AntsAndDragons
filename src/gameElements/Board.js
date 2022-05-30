@@ -7,6 +7,8 @@ class Board {
     constructor(size) {
         this.size = size;
         this.board = [];
+        this.boardEvents = [];
+        this.eventId = 0;
     }
 
     // Generate empty board
@@ -29,6 +31,11 @@ class Board {
     // Return size of board
     getSize() {
         return this.size;
+    }
+
+    // Return events list
+    getEvents() {
+        return this.boardEvents;
     }
 
     // Return element with position 'position'
@@ -61,6 +68,9 @@ class Board {
                 this.board[i][j] = " ";
             }
         }
+
+        this.eventId = 0;
+        this.boardEvents = [];
     }
 
     // Do next move on board
@@ -126,6 +136,12 @@ class Board {
     // Delete element from game board
     deleteElement(position) {
         this.board[position.y][position.x] = " ";
+    }
+
+    // Add new event object to list of events
+    addEventMsg(msgEvent) {
+        this.boardEvents.unshift({ id: this.eventId, event: msgEvent });
+        this.eventId++;
     }
 }
 

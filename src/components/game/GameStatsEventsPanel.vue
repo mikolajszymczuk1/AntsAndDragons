@@ -23,12 +23,12 @@
 
         <!-- Panels -->
         <div class="relative overflow-hidden h-[415px] bg-y-in-mn-blue rounded-[12px] mb-[20px]">
-            <button class="absolute top-[20px] right-[20px] w-[25px] h-[25px] lg:hidden"
+            <button class="absolute top-[20px] bg-candy-pink right-[20px] w-[35px] h-[35px] lg:hidden rounded-[5px]"
                 name="Exit button"
                 aria-label="Exit from stats-events panel"
                 @click="exitMenu()"
             >
-                <CrossIcon class="fill-[white]" />
+                <CrossIcon class="w-[100%] h-[100%] fill-[white]" />
             </button>
 
             <Transition mode="out-in"
@@ -63,12 +63,24 @@
                 </div>
         
                 <!-- Events -->
-                <div class="overflow-auto h-[100%] py-[33px]"
+                <div class="overflow-auto h-[100%] py-[33px] px-[25px]"
                     v-else
                 >
-                    <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
+                    <h3 class="mb-[26px] text-center text-[white] font-open font-bold text-[1.6em]">
                         Events
                     </h3>
+
+                    <TransitionGroup tag="div"
+                        enter-active-class="animate__animated animate__bounceIn"
+                        leave-active-class="animate__animated animate__bounceOut"
+                    >
+                        <div class="bg-[white] text-y-in-mn-blue py-[15px] mb-[13px] last:mb-0 font-open font-bold text-[0.9em] text-center rounded-[12px]"
+                            v-for="e in eventsList"
+                            :key="e.id"
+                        >
+                            <span>{{ e.event.title }}</span>
+                        </div>
+                    </TransitionGroup>
                 </div>
             </Transition>
         </div>
@@ -113,6 +125,10 @@
             },
             elementStatsData: {
                 type: Object,
+                required: true
+            },
+            eventsList: {
+                type: Array,
                 required: true
             }
         },
