@@ -1,6 +1,6 @@
 <template>
     <!-- Game stats / events panel component -->
-    <div class="bg-[white] w-[90%] rounded-[15px] absolute top-[13px] left-[50%] translate-x-[-50%] xsm:w-[348px] xsm:translate-x-0 xsm:left-auto xsm:right-[13px] md:top-[100px] lg:top-[150px] lg:right-[3.5%] xlg:right-[10%] lg:block py-[18px] px-[20px] shadow-[0_6px_25px_rgba(53,80,112,0.25)] lg:shadow-none lg:rounded-none"
+    <div class="bg-[white] lg:bg-[transparent] w-[90%] rounded-[15px] absolute top-[13px] left-[50%] translate-x-[-50%] xsm:w-[348px] xsm:translate-x-0 xsm:left-auto xsm:right-[13px] md:top-[100px] lg:top-[150px] lg:right-[3.5%] xlg:right-[10%] lg:block py-[18px] px-[20px] shadow-[0_6px_25px_rgba(53,80,112,0.25)] lg:shadow-none lg:rounded-none"
         :class="isActive ? 'block' : 'hidden'"
     >
         <!-- Panel views container -->
@@ -51,6 +51,11 @@
                 <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
                     Food: {{ statsData.foodCount }}
                 </p>
+
+                <div class="flex justify-between border-b-[2px] border-solid border-b-[white]">
+                    <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">Health: {{ elementStatsData.health }}</p>
+                    <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">X : {{ elementStatsData.positionX }} | Y : {{ elementStatsData.positionY }}</p>
+                </div>
             </div>
     
             <!-- Events -->
@@ -67,6 +72,7 @@
         <div class="p-[25px] bg-cinnamon-satin rounded-[12px]">
             <GameControlButton class="w-[100%] h-[50px] mb-[15px]"
                 bg-color="#e56b6f"
+                @clicked="clearBoard()"
             >
                 Clear Board
             </GameControlButton>
@@ -74,6 +80,7 @@
             <GameControlButton class="w-[100%] h-[50px]"
                 bg-color="white"
                 text-color="#355070"
+                @clicked="changeBoardSize()"
             >
                 Change Board Size
             </GameControlButton>
@@ -98,6 +105,10 @@
             statsData: {
                 type: Object,
                 required: true
+            },
+            elementStatsData: {
+                type: Object,
+                required: true
             }
         },
         data() {
@@ -114,6 +125,16 @@
             // Send exit emit
             exitMenu() {
                 this.$emit("exit-menu");
+            },
+
+            // Emit clear board event
+            clearBoard() {
+                this.$emit("clear-board");
+            },
+
+            // Emit change board size event
+            changeBoardSize() {
+                this.$emit("change-board-size");
             }
         }
     }

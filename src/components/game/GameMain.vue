@@ -8,7 +8,9 @@
             />
 
             <!-- Under board panel -->
-            <div class="flex justify-between items-center pl-[25px] pr-[7px] md:mt-[10px] md:pl-[30px]">
+            <div class="flex justify-between items-center pl-[25px] pr-[7px] md:mt-[10px] md:pl-[30px]"
+                :class="this.board.getSize() === 4 ? 'mt-[60px] md:mt-[100px]' : ''"
+            >
                 <p class="font-noto text-chinese-violet font-bold text-[0.9em] sm:text-[1.1em] md:text-[1.3em]">
                     Round: {{ round }}
                 </p>
@@ -53,8 +55,11 @@
 
         <GameStatsEventsPanel
             :stats-data="statsData"
+            :element-stats-data="elementStatsData"
             :is-active="isStatsEventPanelActive"
             @exit-menu="isStatsEventPanelActive = false"
+            @clear-board="clearGameBoard()"
+            @change-board-size="changeGameBoardSize()"
         />
     </div>
 </template>
@@ -90,6 +95,11 @@
                     antsCount: 0,
                     dragonsCount: 0,
                     foodCount: 0
+                },
+                elementStatsData: {
+                    health: 0,
+                    positionX: 0,
+                    positionY: 0
                 }
             }
         },
@@ -102,9 +112,14 @@
             // User can place game elements only when edit mode is active
             placeGameElementOnBoard(boardPosition) {
                 if (!this.isEditMode) {
-                    this.board.showElementStats(boardPosition);
+                    let { health, x, y } = this.board.getElementStats(boardPosition);
+                    this.elementStatsData.health = health;
+                    this.elementStatsData.positionX = x;
+                    this.elementStatsData.positionY = y;
+                    this.isStatsEventPanelActive = true;
                 } else {
                     this.board.placeGameElement(boardPosition.x, boardPosition.y);
+                    this.updateStatsData();
                 }
             },
             
@@ -112,6 +127,7 @@
             clearGameBoard() {
                 this.round = 0;
                 this.board.clearBoard();
+                this.updateStatsData();
             },
 
             // Turn on or turn off edit mode (When edit mode is true, user can place elements on board)
@@ -123,6 +139,33 @@
             doNextMoveOnBoard() {
                 this.round++;
                 this.board.nextMove();
+                this.updateStatsData();
+            },
+
+            // Update stats data
+            updateStatsData() {
+                let { ants, dragons, food } = this.board.countElements();
+                this.statsData.antsCount = ants;
+                this.statsData.dragonsCount = dragons;
+                this.statsData.foodCount = food;
+            },
+
+            // Change game board size to 4x4 or 6x6 or 8x8
+            changeGameBoardSize() {
+                switch(this.board.getSize()) {
+                    case 8:
+                        this.board = new Board(4);
+                        break;
+                    case 6:
+                        this.board = new Board(8);
+                        break;
+                    case 4:
+                        this.board = new Board(6);
+                        break;
+                }
+
+                this.board.createBoard();
+                this.updateStatsData();
             }
         }
     }

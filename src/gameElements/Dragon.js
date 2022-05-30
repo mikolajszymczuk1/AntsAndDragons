@@ -66,9 +66,12 @@ class Dragon extends Base {
     }
 
     // Show Dragon stats
-    showStats() {
-        console.log(`Health: ${ this.health }`);
-        console.log(`PositionX: ${ this.x } | PositionY: ${ this.y }`);
+    getStats() {
+        return {
+            health: this.health,
+            x: this.x,
+            y: this.y
+        };
     }
 }
 

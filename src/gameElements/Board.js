@@ -82,10 +82,25 @@ class Board {
         }
     }
 
+    // Count all game elements and return them
+    countElements() {
+        let [ a, d, f ] = [0, 0, 0];
+        for (let i = 0; i < this.size; i++) {
+            for (let j = 0; j < this.size; j++) {
+                let position = { x: j, y: i };
+                if (this.checkCell(position) === "ant") a++;
+                else if (this.checkCell(position) === "dragon") d++;
+                else if (this.checkCell(position) === "food") f++;
+            }
+        }
+
+        return { ants: a, dragons: d, food: f };
+    }
+
     // Show element stats (Ant or Dragon)
-    showElementStats(position) {
-        if (!this.isItAntOrDragon(position)) return;
-        this.board[position.y][position.x].showStats();
+    getElementStats(position) {
+        if (!this.isItAntOrDragon(position)) return { health: 0, x: 0, y: 0 };
+        return this.board[position.y][position.x].getStats();
     }
 
     // Move element to another place
