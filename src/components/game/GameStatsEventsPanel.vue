@@ -22,7 +22,7 @@
         </div>
 
         <!-- Panels -->
-        <div class="relative h-[415px] bg-y-in-mn-blue rounded-[12px] mb-[20px]">
+        <div class="relative overflow-hidden h-[415px] bg-y-in-mn-blue rounded-[12px] mb-[20px]">
             <button class="absolute top-[20px] right-[20px] w-[25px] h-[25px] lg:hidden"
                 name="Exit button"
                 aria-label="Exit from stats-events panel"
@@ -31,41 +31,46 @@
                 <CrossIcon class="fill-[white]" />
             </button>
 
-            <!-- Stats -->
-            <div class="py-[33px] px-[48px] h-[100%]"
-                v-if="activePanel === 'stats'"
+            <Transition mode="out-in"
+                enter-active-class="animate__animated animate__fadeInRight animate__faster"
+                leave-active-class="animate__animated animate__fadeOutLeft animate__faster"
             >
-                <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
-                    Stats
-                </h3>
-
-                <!-- List of basic stats -->
-                <p class="mt-[46px] mb-[30px] pb-[5px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
-                    Ants: {{ statsData.antsCount }}
-                </p>
-                
-                <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
-                    Dragon: {{ statsData.dragonsCount }}
-                </p>
-                
-                <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
-                    Food: {{ statsData.foodCount }}
-                </p>
-
-                <div class="flex justify-between border-b-[2px] border-solid border-b-[white]">
-                    <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">Health: {{ elementStatsData.health }}</p>
-                    <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">X : {{ elementStatsData.positionX }} | Y : {{ elementStatsData.positionY }}</p>
-                </div>
-            </div>
+                <!-- Stats -->
+                <div class="py-[33px] px-[48px] h-[100%]"
+                    v-if="activePanel === 'stats'"
+                >
+                    <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
+                        Stats
+                    </h3>
     
-            <!-- Events -->
-            <div class="overflow-auto h-[100%] py-[33px]"
-                v-else
-            >
-                <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
-                    Events
-                </h3>
-            </div>
+                    <!-- List of basic stats -->
+                    <p class="mt-[46px] mb-[30px] pb-[5px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                        Ants: {{ statsData.antsCount }}
+                    </p>
+                    
+                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                        Dragon: {{ statsData.dragonsCount }}
+                    </p>
+                    
+                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                        Food: {{ statsData.foodCount }}
+                    </p>
+    
+                    <div class="flex justify-between border-b-[2px] border-solid border-b-[white]">
+                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">Health: {{ elementStatsData.health }}</p>
+                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">X : {{ elementStatsData.positionX }} | Y : {{ elementStatsData.positionY }}</p>
+                    </div>
+                </div>
+        
+                <!-- Events -->
+                <div class="overflow-auto h-[100%] py-[33px]"
+                    v-else
+                >
+                    <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
+                        Events
+                    </h3>
+                </div>
+            </Transition>
         </div>
 
         <!-- Under panels -->
