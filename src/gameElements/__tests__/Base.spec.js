@@ -60,4 +60,22 @@ describe("Base.js", () => {
         
         resetMockRandom();
     });
+
+    it("sendMsg should add new message(event) to game events list", () => {
+        const board = new Board(3);
+        board.createBoard();
+        base.sendMsg(board, "testMessage");
+
+        expect(board.getEvents().length).toBe(1);
+        expect(board.getEvents()[0]).toEqual({
+            id: 0,
+            event: {
+                title: "testMessage",
+                data: {
+                    x: 1,
+                    y: 1
+                }
+            }
+        });
+    });
 });
