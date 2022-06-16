@@ -6,6 +6,7 @@
             <div class="flex justify-center w-[34px] mr-[5px] last:mr-0 first:opacity-0 first:w-auto sm:w-[44px] sm:mr-[8px] md:w-[54px]"
                 v-for="num in (getNumberOfColumns + 1)"
                 :key="num"
+                data-test="col-number"
             >
                 {{ num - 1 }}
             </div>
@@ -17,7 +18,9 @@
             :key="rowIndex"
         >
             <!-- Row number -->
-            <div class="flex items-center mr-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em] sm:text-[0.9em] md:text-[1.2em]">
+            <div class="flex items-center mr-[10px] font-noto font-semibold text-y-in-mn-blue text-[0.8em] sm:text-[0.9em] md:text-[1.2em]"
+                data-test="row-number"
+            >
                 {{ rowIndex + 1 }}
             </div>
 
@@ -27,6 +30,7 @@
                 :key="colIndex"
                 :class="col !== ' ' ? 'bg-chinese-violet' : 'bg-tumbleweed/80'"
                 @click="emitCords(colIndex, rowIndex)"
+                data-test="cell"
             >
                 <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
                     <AntIcon v-if="col !== ' ' && col.getName() === 'Ant'" />
