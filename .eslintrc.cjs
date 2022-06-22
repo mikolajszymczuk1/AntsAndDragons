@@ -6,12 +6,13 @@ module.exports = {
     "eslint:recommended"
   ],
   "env": {
-    "vue/setup-compiler-macros": true
+    "vue/setup-compiler-macros": true,
+    "cypress/globals": true
   },
   "overrides": [
     {
       "files": [
-        "cypress/integration/**.spec.{js,ts,jsx,tsx}"
+        "cypress/e2e/**.spec.{js,ts,jsx,tsx}"
       ],
       "extends": [
         "plugin:cypress/recommended"
