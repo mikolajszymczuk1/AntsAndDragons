@@ -33,6 +33,19 @@ class Base {
 
         return neighbors;
     }
+
+    // Send event message
+    sendMsg(board, msgTitle, posX = this.x, posY = this.y) {
+        let msg = {
+            title: msgTitle,
+            data: {
+                x: posX,
+                y: posY
+            }
+        };
+        
+        board.addEventMsg(msg);
+    }
 }
 
 export default Base;

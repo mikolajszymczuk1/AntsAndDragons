@@ -27,6 +27,7 @@
                 name="Exit button"
                 aria-label="Exit from stats-events panel"
                 @click="exitMenu()"
+                data-test="exit-button"
             >
                 <CrossIcon class="w-[100%] h-[100%] fill-[white]" />
             </button>
@@ -44,21 +45,27 @@
                     </h3>
     
                     <!-- List of basic stats -->
-                    <p class="mt-[46px] mb-[30px] pb-[5px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                    <p class="mt-[46px] mb-[30px] pb-[5px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]"
+                        data-test="ants-count"
+                    >
                         Ants: {{ statsData.antsCount }}
                     </p>
                     
-                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]"
+                        data-test="dragons-count"
+                    >
                         Dragon: {{ statsData.dragonsCount }}
                     </p>
                     
-                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]">
+                    <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]"
+                        data-test="food-count"
+                    >
                         Food: {{ statsData.foodCount }}
                     </p>
     
                     <div class="flex justify-between border-b-[2px] border-solid border-b-[white]">
-                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">Health: {{ elementStatsData.health }}</p>
-                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]">X : {{ elementStatsData.positionX }} | Y : {{ elementStatsData.positionY }}</p>
+                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]" data-test="health">Health: {{ elementStatsData.health }}</p>
+                        <p class="pb-[5px] font-open font-bold text-[white] text-[0.9em]" data-test="element-stats">X : {{ elementStatsData.positionX }} | Y : {{ elementStatsData.positionY }}</p>
                     </div>
                 </div>
         
@@ -77,6 +84,7 @@
                         <div class="bg-[white] text-y-in-mn-blue py-[15px] mb-[13px] last:mb-0 font-open font-bold text-[0.9em] text-center rounded-[12px]"
                             v-for="e in eventsList"
                             :key="e.id"
+                            data-test="event"
                         >
                             <span>{{ e.event.title }}</span>
                         </div>

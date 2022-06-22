@@ -10,6 +10,7 @@
                 name="Close menu"
                 aria-label="Close menu icon button"
                 @click="toggleMenu()"
+                data-test="close-button"
             >
                 <CrossIcon class="fill-y-in-mn-blue" />
             </button>
@@ -37,6 +38,7 @@
             name="Menu button"
             aria-label="Menu icon button"
             @click="toggleMenu()"
+            data-test="menu-button"
         >
             <MenuIcon class="fill-y-in-mn-blue" />
         </button>

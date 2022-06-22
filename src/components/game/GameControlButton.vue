@@ -3,6 +3,7 @@
     <button class="rounded-[10px] font-open font-semibold flex justify-center items-center"
         :style="`background-color: ${ bgColor }; color: ${ textColor };`"
         @click="handleClick()"
+        data-test="control-button"
     >
         <slot></slot>
     </button>
