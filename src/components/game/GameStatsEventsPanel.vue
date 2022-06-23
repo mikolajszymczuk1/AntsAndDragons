@@ -54,7 +54,7 @@
                     <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]"
                         data-test="dragons-count"
                     >
-                        Dragon: {{ statsData.dragonsCount }}
+                        Dragons: {{ statsData.dragonsCount }}
                     </p>
                     
                     <p class="pb-[5px] mb-[30px] font-open font-bold text-[white] text-[0.9em] border-b-[2px] border-solid border-b-[white]"
