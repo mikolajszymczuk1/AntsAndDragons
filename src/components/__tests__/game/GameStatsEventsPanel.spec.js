@@ -98,7 +98,7 @@ describe("GameStatsEventsPanel.vue", () => {
         });
 
         expect(wrapper.find("[data-test=ants-count]").text()).toBe("Ants: 5");
-        expect(wrapper.find("[data-test=dragons-count]").text()).toBe("Dragon: 3");
+        expect(wrapper.find("[data-test=dragons-count]").text()).toBe("Dragons: 3");
         expect(wrapper.find("[data-test=food-count]").text()).toBe("Food: 1");
         expect(wrapper.find("[data-test=health]").text()).toBe("Health: 100");
         expect(wrapper.find("[data-test=element-stats]").text()).toBe("X : 2 | Y : 2");
