@@ -11,12 +11,15 @@
             <div class="flex justify-between items-center pl-[25px] pr-[7px] md:mt-[10px] md:pl-[30px]"
                 :class="this.board.getSize() === 4 ? 'mt-[60px] md:mt-[100px]' : ''"
             >
-                <p class="font-noto text-chinese-violet font-bold text-[0.9em] sm:text-[1.1em] md:text-[1.3em]">
+                <p class="font-noto text-chinese-violet font-bold text-[0.9em] sm:text-[1.1em] md:text-[1.3em]"
+                    data-test="round-count"
+                >
                     Round: {{ round }}
                 </p>
                 
                 <button class="lg:hidden" name="stats menu" aria-label="stats menu button"
                     @click="isStatsEventPanelActive = true"
+                    data-test="stats-events-panel"
                 >
                     <DotsMenuIcon class="fill-chinese-violet w-[35px] h-auto sm:w-[45px]" />
                 </button>

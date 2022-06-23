@@ -40,7 +40,9 @@
                 <div class="py-[33px] px-[48px] h-[100%]"
                     v-if="activePanel === 'stats'"
                 >
-                    <h3 class="text-center text-[white] font-open font-bold text-[1.6em]">
+                    <h3 class="text-center text-[white] font-open font-bold text-[1.6em]"
+                        data-test="stats"
+                    >
                         Stats
                     </h3>
     
@@ -73,7 +75,9 @@
                 <div class="overflow-auto h-[100%] py-[33px] px-[25px]"
                     v-else
                 >
-                    <h3 class="mb-[26px] text-center text-[white] font-open font-bold text-[1.6em]">
+                    <h3 class="mb-[26px] text-center text-[white] font-open font-bold text-[1.6em]"
+                        data-test="events"
+                    >
                         Events
                     </h3>
 
